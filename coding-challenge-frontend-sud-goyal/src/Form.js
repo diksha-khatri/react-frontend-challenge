@@ -70,7 +70,7 @@ const options = []
                     </select>
                         
                             
-                                <iframe
+                                {/* <iframe
                                 width="300"
                                 height="250"
                                 style="border:0"
@@ -80,7 +80,7 @@ const options = []
                                 src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-sAqxa1pZqF4tk7eR83ZS7wOCEmsxKwI
                                     &q={{lat=item.geo.lat},{lng=item.geo.lng}},Seattle+WA">
                                 </iframe>
-                
+                 */}
                         
                         
                     
