@@ -1,7 +1,7 @@
 body {
   margin: 0 auto;
   height: 100vh;
-  /* background-color: #639; */
+  background-color: #639;
 
 }
 
@@ -11,7 +11,7 @@ code {
 }
 
 .formContainer{
-  height: 50vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
