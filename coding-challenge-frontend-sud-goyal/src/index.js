@@ -8,7 +8,7 @@ import Form from './Form';
 ReactDOM.render(
   <React.StrictMode>
     <Form /> 
-    {/* <Map /> */}
+    {/* <MyMap /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
