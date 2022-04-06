@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Axios from "axios"
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+
 // import AsyncSelect from "react-select/async"
 // import Select from "react-select";
 // import {GoogleMap , withScriptjs, withGoogleMap } from "google-maps-react"
@@ -8,15 +9,10 @@ import Axios from "axios"
 
 export default function Form() {
 
-
     const [data, setdata] = useState([])
     const [userid, setuserid] = useState("")
     const [post, setpost] = useState([])
-    // s
-    const Key = "AIzaSyD-sAqxa1pZqF4tk7eR83ZS7wOCEmsxKwI"
-    let Lat
-    let Lng
-    let url
+    const [selectedUser, setSelectedUser] = useState(null)
 
     useEffect(() => {
         const getdata = async () => {
@@ -80,6 +76,11 @@ export default function Form() {
 
             }
         })
+        // find the Selected User with the ID from the Dropdown Select
+        // and find it in the data array which is populated from the API
+        const selectedId = event.target.value;
+        const user = data.find(user => user.id == selectedId)
+        setSelectedUser(user)
     }
     // function handlepost(e){
     //     setpostData () => {
@@ -177,7 +178,31 @@ return (
         
         
             <button className="form--submit" type="submit">Submit</button>
+
+            
         </form>
+        <div class="map-container">
+            <MyMapUpdated user={{...selectedUser}}/>
+        </div>
     </div>
-)
-    }
+)}
+
+function MyMap(props) {
+  return Object.keys(props.user).length > 0? <Map google={props.google} zoom={14}>
+         <Marker
+            title={'The marker`s title will appear as a tooltip.'}
+            name={'SOMA'}
+            position={{
+                "lat": props.user.address.geo.lat,
+                "lng": props.user.address.geo.lng
+            }}
+            style={{
+                innerWidth: 50
+            }}
+            />
+      </Map>: null
+}
+
+const MyMapUpdated =  GoogleApiWrapper({
+    apiKey: process.env.GOOGLE_KEY
+})(MyMap);
